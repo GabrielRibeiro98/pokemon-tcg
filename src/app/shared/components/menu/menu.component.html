@@ -1,0 +1,24 @@
+<div class="content-wrap" igxLayout style="height: 100vh;">
+    <igx-nav-drawer id="navigation" #drawer [isOpen]="true" [pin]="true" [pinThreshold]="0">
+      <ng-template igxDrawer>
+        <header class="p-5">
+            <img src="../../../../assets/logo.png" alt="">
+        </header>
+        <nav>
+          <span igxDrawerItem [isHeader]="true">Menu</span>
+
+          <span *ngFor="let item of navItems" igxDrawerItem [active]="item.text === selected" igxRipple (click)="navigate(item)">
+            <igx-icon family="material">{{ item.name }}</igx-icon>
+            <span>{{ item.text }}</span>
+          </span>
+        </nav>
+      </ng-template>
+    </igx-nav-drawer>
+
+    <main igxFlex>
+      <!-- <button (click)="drawer.toggle()"> Menu </button> -->
+      <span igxButton="icon" igxToggleAction="navigation">
+        <igx-icon family="material">menu</igx-icon>
+      </span>
+    </main>
+</div>

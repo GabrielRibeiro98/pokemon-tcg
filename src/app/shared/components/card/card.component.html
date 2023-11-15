@@ -1,0 +1,22 @@
+<div class="relative sample-column card-wrapper"
+     (mouseenter)="onMouseEnter()"
+     (mouseleave)="onMouseLeave()">
+    <igx-card [class.selected]="isSelected">
+        <igx-card-media height="280px">
+            <img [src]="imageUrl">
+        </igx-card-media>
+        <div *ngIf="isMouseOver"
+             class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-lg">
+            <button *ngIf="selectedBoolean" (click)="toggleSelection()" class="bg-green-600 hover:bg-green-700 px-3 py-2 text-sm rounded mb-2 transition-colors mb-4">Selecionar</button>
+            <button *ngIf="deleteBoolean" (click)="delete()" class="bg-red-600 hover:bg-red-700 px-3 py-2 text-sm rounded mb-2 transition-colors mb-4">Excluir</button>
+            <button (click)="largeImageModal.open()" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 text-sm rounded transition-colors">Visualizar</button>
+        </div>
+    </igx-card>
+    <!-- Modal para a imagem maior -->
+    <igx-dialog #largeImageModal>
+      <img [src]="imageLarge" alt="Imagem Maior" class="w-96">
+      <igx-dialog-actions>
+        <button igxButton="flat" (click)="largeImageModal.close()">Fechar</button>
+      </igx-dialog-actions>
+    </igx-dialog>
+</div>

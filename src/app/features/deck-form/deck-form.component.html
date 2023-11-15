@@ -1,0 +1,53 @@
+<div class="container mx-auto mt-4">
+    <h1 class="text-2xl font-semibold mb-4">Criação de baralho</h1>
+    <div class="bg-white p-4 mb-4 shadow-md">
+        <article class="sample-column">
+            <form [formGroup]="deckForm">
+                <igx-input-group type="border">
+                    <input igxInput name="deckName" type="text" required formControlName="name"/>
+                    <label igxLabel for="deckName">Nome do baralho</label>
+                </igx-input-group>
+            </form>
+        </article>
+        <hr class="mt-8 mb-4">
+        <div class="flex items-center justify-between mb-8">
+            <span>Selecione suas cartas</span>
+            <span>Mínimo de cartas: 24 <br> Máximo de cartas: 60</span>
+        </div>
+        <igx-input-group class="mb-4" type="search">
+            <input #input1 igxInput (change)="searchPokemon(input1.value, 1)" (blur)="searchPokemon(input1.value, 1)" placeholder="Procure pelo seu pokemon" />
+            <igx-prefix>
+                <igx-icon>search</igx-icon>
+            </igx-prefix>
+            <igx-suffix *ngIf="input1.value.length > 0" (click)="input1.value = ''">
+                <igx-icon>clear</igx-icon>
+            </igx-suffix>
+        </igx-input-group>
+        <div class="flex flex-wrap gap-4 justify-start items-center">
+            <app-card *ngFor="let card of cards"
+                [imageUrl]="card.images.small"
+                [imageLarge]="card.images.large"
+                [selectedBoolean]="true"
+                (cardSelected)="snackbar.open(addCard(card))"
+                [id]="card.id">
+            </app-card>
+        </div> 
+        <igx-paginator #paginator class="mt-8"
+            [perPage]="10"
+            [selectOptions]="itemsPerPage"
+            [totalRecords]="totalRecords"
+            (pageChange)="pageChange($event)"
+            (perPageChange)="perPageChange($event)">
+        </igx-paginator>
+        <div class="w-full flex justify-end items-center mt-8">
+            <div class="button-sample">
+                <span class="font-semibold" igxButton="raised" igxButtonBackground="#72da67" igxRipple="white" (click)="snackbar.open(saveDeck())">
+                    Salvar
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <igx-snackbar #snackbar></igx-snackbar>
+</div>
