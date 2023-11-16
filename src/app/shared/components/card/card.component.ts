@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IgxDialogComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-card',
@@ -19,7 +18,7 @@ export class CardComponent {
   isSelected = false;
   isMouseOver = false;
 
-  constructor(private dialog: IgxDialogComponent) {
+  constructor() {
   }
 
   onMouseEnter(): void {

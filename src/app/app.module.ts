@@ -9,7 +9,6 @@ import { CoreModule } from './core/core.module';
 import { IgxGridModule } from 'igniteui-angular';
 import { IgxButtonModule } from 'igniteui-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { HammerModule } from '@angular/platform-browser';
 import { SharedModule } from './shared/shared.module';
 import { DeckFormModule } from './features/deck-form/deck-form.module';
 import { DeckListModule } from './features/deck-list/deck-list.module';
@@ -29,7 +28,6 @@ import { DeckListModule } from './features/deck-list/deck-list.module';
     HttpClientModule,
     IgxGridModule,
     IgxButtonModule,
-    HammerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
