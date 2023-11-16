@@ -1,0 +1,77 @@
+<form *ngIf="deck" [formGroup]="deckForm">
+    <igx-stepper #stepper [titlePosition]="titlePosition" [orientation]="orientation">
+      <igx-step>
+        <span igxStepTitle>Alterar nome do baralho</span>
+        <div igxStepContent>
+          <igx-input-group type="border">
+            <input igxInput name="deckName" type="text" required formControlName="name"/>
+            <label igxLabel for="deckName">Nome do baralho</label>
+          </igx-input-group>
+          <div class="w-full flex justify-end items-center mt-4">
+            <div class="button-sample">
+              <span class="font-normal" igxButton="raised" igxButtonBackground="#72da67" igxRipple="white" (click)="snackbar.open(saveNameDeck())">
+                Salvar nome
+              </span>
+            </div>
+          </div>
+        </div>
+      </igx-step>
+      <igx-step>
+        <span igxStepTitle>Excluir cartas</span>
+        <div igxStepContent>
+          <span class="font-semibold text-black">{{deck.cards.length}} de 60 cartas 
+            <br> Obs: O mínimo de cartas são 24
+            <br> <span *ngIf="deck.cards.length === 24" class="font-semibold text-red-600">O baralho atingiu o número mínimo de cartas.</span>
+          </span>
+          <div class="flex flex-wrap gap-4 justify-center items-center mt-8">
+            <app-card *ngFor="let card of data; index as i"
+              [imageUrl]="card.images.small"
+              [imageLarge]="card.images.large"
+              [deleteBoolean]="true"
+              (cardDelete)="snackbar.open(deleteCard(i))"
+              [id]="card.id">
+            </app-card>
+          </div>
+          <igx-paginator #paginator class="mt-8"
+            [perPage]="6"
+            [selectOptions]="itemsPerPage"
+            [totalRecords]="deck.cards.length">
+          </igx-paginator>
+        </div>
+      </igx-step>
+      <igx-step>
+        <span (click)="loadingCards()" igxStepTitle>Adicionar cartas</span>
+        <div igxStepContent>
+          <igx-input-group class="mb-4" type="search">
+            <input #input1 igxInput (change)="searchPokemon(input1.value, 1)" (blur)="searchPokemon(input1.value, 1)" placeholder="Procure pelo seu pokemon" />
+            <igx-prefix>
+              <igx-icon>search</igx-icon>
+            </igx-prefix>
+            <igx-suffix *ngIf="input1.value.length > 0" (click)="input1.value = ''">
+              <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
+          <div class="flex flex-wrap gap-4">
+            <app-card *ngFor="let card of cards"
+              [imageUrl]="card.images.small"
+              [imageLarge]="card.images.large"
+              [selectedBoolean]="true"
+              (cardSelected)="snackbar.open(addCard(card))"
+              [id]="card.id">
+            </app-card>
+          </div> 
+          <igx-paginator #paginator class="mt-8"
+            [perPage]="6"
+            [selectOptions]="itemsPerPage"
+            [totalRecords]="totalRecords"
+            (pageChange)="pageChange($event)"
+            (perPageChange)="perPageChange($event)">
+          </igx-paginator>
+        </div>
+      </igx-step>
+    </igx-stepper>
+</form>
+  
+<div>
+    <igx-snackbar #snackbar></igx-snackbar>
+</div>

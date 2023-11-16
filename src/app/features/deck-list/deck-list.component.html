@@ -1,0 +1,42 @@
+<div class="container mx-auto mt-4">
+    <div class="w-full flex items-center gap-9 mb-4">
+      <h1 class="text-2xl font-semibold">Lista de Baralhos</h1>
+      <div class="button-sample">
+        <span class="font-semibold" igxButton="raised" igxButtonBackground="#72da67" igxRipple="white" (click)="newDeck()">
+            Criar baralho
+        </span>
+      </div>
+    </div>
+  
+    <div class="bg-white p-4 mb-4 shadow-md">
+      <div class="flex flex-wrap gap-9" *ngIf="decks.length !==0">
+        <app-deck *ngFor="let deck of decks"
+        [id]="deck.id"
+        [name]="deck.name"
+        [deckLenght]="deck.cards.length"
+        (cardDelete)="removeDeck(deck.id)"
+        (cardInfo)="openDeckDetail(deck)"
+        (cardEdit)="openDeckEdit(deck)"
+      >
+      </app-deck>
+
+      </div>
+      <div *ngIf="decks.length == 0">
+        Você ainda não criou nenhum baralho
+      </div>
+    </div>
+</div>
+
+<igx-dialog #deckInfo>
+  <app-deck-details [deck]="selectedDeck" [supertypes]="supertypes" [types]="types"></app-deck-details>
+  <igx-dialog-actions>
+    <button igxButton="flat" (click)="deckInfo.close()">Fechar</button>
+  </igx-dialog-actions>
+</igx-dialog>
+
+<igx-dialog #deckEdit>
+  <app-deck-edit [deck]="selectedDeck"></app-deck-edit>
+  <igx-dialog-actions>
+    <button igxButton="flat" (click)="deckEdit.close()">Fechar</button>
+  </igx-dialog-actions>
+</igx-dialog>

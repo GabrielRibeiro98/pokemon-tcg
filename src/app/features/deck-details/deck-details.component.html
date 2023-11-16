@@ -1,0 +1,31 @@
+<div *ngIf="deck">
+    <div>
+      <h2 class="text-2xl font-semibold text-black">Baralho: {{deck.name}}</h2>
+      <h3 class="text-lg font-normal text-black">Quantidade de cartas de pokemon: {{supertypes.Pokemon ? supertypes.Pokemon : 0 }}</h3>
+      <h3 class="text-lg font-normal text-black">Quantidade de cartas de treinador: {{supertypes.Trainer ? supertypes.Trainer : 0}}</h3>
+      <h3 class="text-lg font-normal text-black">Quantidade de cartas de energia: {{supertypes.Energy ? supertypes.Energy : 0}}</h3>
+      <div class="flex text-lg font-normal text-black">
+        <h3>Quantidade de cores no baralho: </h3>
+        <ul class="flex gap-4 ml-2">
+          <li *ngFor="let type of types">
+            {{ type }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <hr class="mb-8 mt-8">
+  
+    <div class="flex flex-wrap gap-4 justify-center items-center">
+      <app-card *ngFor="let card of data"
+        [imageUrl]="card.images.small"
+        [imageLarge]="card.images.large"
+        [id]="card.id">
+      </app-card>
+    </div>
+    <igx-paginator #paginator class="mt-8"
+      [perPage]="6"
+      [selectOptions]="itemsPerPage"
+      [totalRecords]="deck.cards.length">
+    </igx-paginator>
+  </div>

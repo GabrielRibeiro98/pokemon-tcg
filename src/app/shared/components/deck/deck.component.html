@@ -1,0 +1,29 @@
+
+<div class="rounded-2xl flex flex-col items-center p-3 max-w-xs bg-[#316bb3] bg-[url('../../../../assets/pokeball.png)]">
+    <h2 class="text-[#F6F8FC] mt-4 font-sans text-lg font-medium">{{name}}</h2>
+    <h3 class="text-[#F6F8FC] mt-2 font-sans text-sm font-medium">{{deckLenght}} cartas</h3>
+    <img class="mt-8 mb-8 max-h-32" src="../../../../assets/pokeball.png" alt="">
+    <div class="flex items-center justify-center">
+        <button igxButton="fab" class="mr-4" igxButtonBackground="#FFCB05" [igxTooltipTarget]="tooltipInfo" (click)="info()">
+            <igx-icon fontSet="material">info</igx-icon>
+        </button>
+        <button igxButton="fab" class="mr-4" igxButtonBackground="#72da67" [igxTooltipTarget]="tooltipEdit" (click)="edit()">
+            <igx-icon fontSet="material">edit</igx-icon>
+        </button>
+        <button class="bg-[#316bb3]" igxButton="fab" igxButtonBackground="#c9080e" [igxTooltipTarget]="tooltipDelete" (click)="delete()">
+            <igx-icon fontSet="material">delete</igx-icon>
+        </button>
+    </div>
+</div>
+
+<div #tooltipInfo="tooltip" igxTooltip>
+    Visualizar detalhes
+</div>
+
+<div #tooltipEdit="tooltip" igxTooltip>
+    Editar
+</div>
+
+<div #tooltipDelete="tooltip" igxTooltip>
+    Excluir
+</div>
