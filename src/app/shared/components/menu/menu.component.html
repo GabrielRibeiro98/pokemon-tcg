@@ -1,4 +1,4 @@
-<div class="content-wrap" igxLayout style="height: 100vh;">
+<div class="h-screen flex" igxLayout>
     <igx-nav-drawer id="navigation" #drawer [isOpen]="true" [pin]="true" [pinThreshold]="0">
       <ng-template igxDrawer>
         <header class="p-5">
@@ -17,7 +17,7 @@
 
     <main igxFlex>
       <!-- <button (click)="drawer.toggle()"> Menu </button> -->
-      <span igxButton="icon" igxToggleAction="navigation">
+      <span class="mt-4" igxButton="icon" igxToggleAction="navigation">
         <igx-icon family="material">menu</igx-icon>
       </span>
     </main>
